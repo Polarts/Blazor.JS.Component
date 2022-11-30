@@ -1,0 +1,74 @@
+﻿@using System.Runtime.CompilerServices;
+@using System.Reflection;
+@using Microsoft.JSInterop;
+@using System.Text.Json;
+@implements IDisposable;
+@inject IJSRuntime jsRuntime;
+
+@code {
+
+    protected ElementReference rootElement;
+    protected IJSObjectReference? jsModule;
+    protected DotNetObjectReference<JSIComponent>? dotNetObjRef;
+    protected bool didScriptAttach = false;
+    protected string moduleUrl = "";
+
+    public JSComponent()
+    {
+        // generate path of JS file
+        string fullName = GetType().FullName!;
+        string assemblyName = Assembly.GetEntryAssembly()!.GetName().Name!;
+        moduleUrl = $"{fullName.Remove(0, assemblyName.Length).Replace('.', '/')}.razor.js";
+    }
+
+    /// <summary>
+    /// Gets a property of the component class by name.
+    /// </summary>
+    /// <param name="propertyName">Name of the property to get.</param>
+    /// <returns>Value of the property.</returns>
+    /// <exception cref="Exception">Throws a generic exception when the property with this name was not found.</exception>
+    [JSInvokable]
+    public object? GetProperty(string propertyName)
+    {
+        var prop = GetType().GetProperty(propertyName);
+        if (prop is null)
+            throw new Exception($"Property ${propertyName} not found");
+        else return prop.GetValue(this);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            dotNetObjRef = DotNetObjectReference.Create(this);
+            await AttachJSModule();
+        }
+    }
+
+    /// <summary>
+    /// Attaches the JS module with the corresponding name to the component.<br></br>
+    /// Override in case you'd like to modify the way the JS module is attached and initialized.
+    /// </summary>
+    protected async Task AttachJSModule()
+    {
+        jsModule = await jsRuntime.InvokeAsync<IJSObjectReference>("import", moduleUrl);
+        try
+        {
+            await jsModule.InvokeVoidAsync(GetType().Name, rootElement, dotNetObjRef);
+            didScriptAttach = true;
+
+        }
+        catch (Exception e)
+        {
+            didScriptAttach = false;
+            Console.WriteLine($"Failed to initialized attached JS module for {GetType().Name}: {e.Message}");
+        }
+    }
+
+    public void Dispose() 
+    {
+        dotNetObjRef?.Dispose();
+        jsModule?.DisposeAsync();
+    }
+}
