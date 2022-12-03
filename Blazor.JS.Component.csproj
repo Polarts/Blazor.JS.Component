@@ -17,7 +17,7 @@
     <PackageTags>Blazor; JavaScript; JS; Module; Component; Razor; Isolation;</PackageTags>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Version>1.0.1.1</Version>
+    <Version>1.0.1.2</Version>
   </PropertyGroup>
 
 
