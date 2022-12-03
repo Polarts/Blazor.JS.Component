@@ -4,6 +4,18 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Title>Blazor JS Component</Title>
+    <Authors>David Klein</Authors>
+    <Company>Polarts</Company>
+    <Description>An expansion to Blazor that adds the ability to painlessly attach a JS module counterpart to Razor components.</Description>
+    <Copyright>2022 David Klein a.k.a Polarts</Copyright>
+    <PackageProjectUrl>https://github.com/Polarts/Blazor.JS.Component</PackageProjectUrl>
+    <PackageIcon>BlazorJS.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Polarts/Blazor.JS.Component</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Blazor; JavaScript; JS; Module; Component; Razor; Isolation;</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
 
@@ -17,6 +29,20 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Art &amp; Design\Blazor JS Icon\BlazorJS.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
