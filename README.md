@@ -13,7 +13,7 @@ This library does it automatically for you. All you have to do is add a `.razor.
 
 ## Getting Started
 
-1. Install the package `Blazor.JS.Componen` from NuGet using the NuGet Package Manager or CLI.
+1. Install the package `Blazor.JS.Component` from NuGet using the NuGet Package Manager or CLI.
 2. In your Razor component, add `@inherits JSComponent` at the top.
 3. At the same folder as your componnet, add a JavaScript file with the same name as the component and a `.razor.js` extension. For example: `Counter.razor.js`. If you're using Visual Studio (not Code) you'll see it nested under your Razor component.
 4. In your JavaScript file, add a function with the following signature: `export function ComponentName(rootElement, dotNetObjectRef)`.
