@@ -1,4 +1,4 @@
-# Blazor.JS.Component
+# Blazor.JS.Component [![NuGet Badge](https://buildstats.info/nuget/Blazor.JS.Component)](https://www.nuget.org/packages/Blazor.JS.Component/)
 An expansion to Blazor that adds the ability to painlessly attach a JS module counterpart to Razor components.
 
 This library relies on [Blazor's JavaScript and C# interoperability](https://learn.microsoft.com/en-us/aspnet/core/blazor/javascript-interoperability/?view=aspnetcore-7.0) capabilities. I recommend familiarizing yourself with the JS interop API before using Blazor JS Components.
@@ -13,13 +13,12 @@ This library does it automatically for you. All you have to do is add a `.razor.
 
 ## Getting Started
 
-[TBA - NuGet Package]
-
-1. In your Razor component, add `@inherits JSComponent` at the top.
-2. At the same folder as your componnet, add a JavaScript file with the same name as the component and a `.razor.js` extension. For example: `Counter.razor.js`. If you're using Visual Studio (not Code) you'll see it nested under your Razor component.
-3. In your JavaScript file, add a function with the following signature: `export function ComponentName(rootElement, dotNetObjectRef)`.
-4. In your Razor Component's HTML, wrap the content in an element and add `@ref="rootElement"` to it. The root element is necessary for selecting HTML elements relative to your component in the JS module.
-5. Add any JS code you'd like to apply to your component to the function's body.
+1. Install the package `Blazor.JS.Componen` from NuGet using the NuGet Package Manager or CLI.
+2. In your Razor component, add `@inherits JSComponent` at the top.
+3. At the same folder as your componnet, add a JavaScript file with the same name as the component and a `.razor.js` extension. For example: `Counter.razor.js`. If you're using Visual Studio (not Code) you'll see it nested under your Razor component.
+4. In your JavaScript file, add a function with the following signature: `export function ComponentName(rootElement, dotNetObjectRef)`.
+5. In your Razor Component's HTML, wrap the content in an element and add `@ref="rootElement"` to it. The root element is necessary for selecting HTML elements relative to your component in the JS module.
+6. Add any JS code you'd like to apply to your component to the function's body.
 
 ## Main Usage
 
