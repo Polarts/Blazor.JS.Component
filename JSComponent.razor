@@ -48,7 +48,7 @@
     /// Attaches the JS module with the corresponding name to the component.<br></br>
     /// Override in case you'd like to modify the way the JS module is attached and initialized.
     /// </summary>
-    protected async Task AttachJSModule()
+    protected virtual async Task AttachJSModule()
     {
         jsModule = await jsRuntime.InvokeAsync<IJSObjectReference>("import", moduleUrl);
         try
@@ -64,7 +64,7 @@
         }
     }
 
-    public void Dispose() 
+    public virtual void Dispose() 
     {
         dotNetObjRef?.Dispose();
         jsModule?.DisposeAsync();
